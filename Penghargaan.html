@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Player Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-bottom: 2px solid #00bcd4;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: #00bcd4;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px;
+            background: #1f1f1f;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #00bcd4;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            flex-grow: 1;
+        }
+
+        .profile-info h2 {
+            font-size: 2em;
+            color: #00bcd4;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+        }
+
+        .achievements {
+            margin-top: 20px;
+            background: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievements h3 {
+            margin-bottom: 10px;
+            color: #00bcd4;
+        }
+
+        .achievements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .achievements ul li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #292929;
+            border-radius: 5px;
+        }
+
+        .certificate-section {
+            margin-top: 20px;
+            text-align: center;
+            background: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .certificate {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background: #ffffff;
+            color: #000;
+            border: 10px solid #00bcd4;
+            border-radius: 10px;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .certificate h2 {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: #00bcd4;
+        }
+
+        .certificate p {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin-top: 20px;
+            background: #00bcd4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #008c9e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pro Player Profile</h1>
+    </header>
+    <div class="container">
+        <div class="profile">
+            <img src="https://via.placeholder.com/200" alt="Pro Player Picture" id="profilePicture">
+            <div class="profile-info">
+                <h2 id="playerName">ZXZFLER</h2>
+                <p id="playerBio">Video editor specializing in cinematics and films with several championship titles.</p>
+                <p><strong>Country:</strong> <span id="playerCountry">Indonesian</span></p>
+            </div>
+        </div>
+        <div class="achievements">
+            <h3>Achievements</h3>
+            <ul id="achievementList">
+                <li>2024 - Representative of national level Busmania content creators</li>
+                <li>2023 - 1st place in Busmania content creator at regional level</li>
+                <li>2022 - 2nd place in the national community mania competition</li>
+                <li>2021 - 2nd place in the youth mania contest competition</li>
+            </ul>
+        </div>
+        <div class="certificate-section">
+            <h3>Certificate</h3>
+            <div class="certificate" id="certificate">
+                <h2>Certificate of Excellence</h2>
+                <p>This is to certify that</p>
+                <h2 id="certName">ZXZFLER</h2>
+                <p>has demonstrated outstanding performance in editor video competitions.</p>
+            </div>
+            <button class="btn" onclick="printCertificate()">Print Certificate</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('photoInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePicture').src = e.target.result;
+                    document.getElementById('uploadSection').classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function printCertificate() {
+            const originalContent = document.body.innerHTML;
+            const certificateContent = document.getElementById('certificate').outerHTML;
+            document.body.innerHTML = certificateContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+        }
+
+        // Update certificate name dynamically
+        const playerName = document.getElementById('playerName').textContent;
+        document.getElementById('certName').textContent = playerName;
+    </script>
+</body>
+</html>
